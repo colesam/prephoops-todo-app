@@ -1,6 +1,0 @@
-[submodule "laravel-boiler-plate"]
-	path = laravel-boiler-plate
-	url = git@github.com:JeanHules/laravel-boiler-plate.git
-[submodule "react-boiler-plate"]
-	path = react-boiler-plate
-	url = git@github.com:JeanHules/react-boiler-plate.git
