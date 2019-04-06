@@ -1,9 +1,16 @@
 FROM php:7.2-fpm
 
-RUN apt-get update -y && apt-get install -y libmcrypt-dev openssl
+RUN apt-get update && apt-get install -y gnupg
+RUN apt-get install -y curl ca-certificates
+RUN curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+RUN apt-get update && apt-get -y install postgresql-11 postgresql-server-dev-11
+
+RUN apt-get install -y libmcrypt-dev openssl
+
 RUN pecl install mcrypt-1.0.2
 RUN docker-php-ext-enable mcrypt
-RUN docker-php-ext-install pdo mbstring
+RUN docker-php-ext-install pdo pdo_pgsql mbstring
 RUN apt-get install -y apt-transport-https
 RUN apt-get install -y curl
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
