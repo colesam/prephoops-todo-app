@@ -76,4 +76,14 @@ class LoginController extends Controller
             return response()->json('Something went wrong with the server.', 500);
         }
     }
+
+    public function logout()
+    {
+        foreach (auth()->user()->tokens as $token)
+        {
+            $token->delete();
+        }
+
+        return response()->json('Logged out successfully.',200);
+    }
 }
