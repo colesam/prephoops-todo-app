@@ -1,4 +1,5 @@
 version: '2'
+
 services:
   webserver:
     build:
@@ -8,6 +9,7 @@ services:
       - "9000:80"
     links:
       - backend
+
   backend:
     build:
       context: ./
@@ -17,6 +19,7 @@ services:
     environment:
       - "DB_HOST=database"
       - "DB_PORT=5432"
+
   database:
     image: postgres:11.2
     environment:
