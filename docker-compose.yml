@@ -1,0 +1,26 @@
+version: '2'
+services:
+  webserver:
+    build:
+      context: ./
+      dockerfile: webserver.docker
+    ports:
+      - "9000:80"
+    links:
+      - backend
+  backend:
+    build:
+      context: ./
+      dockerfile: backend.docker
+    volumes:
+      - ./backend:/var/www
+    environment:
+      - "DB_HOST=database"
+      - "DB_PORT=5432"
+  database:
+    image: postgres:11.2
+    environment:
+      - "POSTGRES_PASSWORD=test123"
+      - "POSTGRES_DB=todo"
+    ports:
+      - "5432:5432"
