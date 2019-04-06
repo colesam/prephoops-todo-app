@@ -43,6 +43,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        // Grab client id and secret from the database
         $oauthPasswordClient = DB::connection()->table('oauth_clients')
             ->select([
                 'id',
@@ -56,29 +57,23 @@ class LoginController extends Controller
             return response()->json('Something is wrong with the server configuration.', 500);
         }
 
-        try
-        {
-            // Add parameters to request to abstract oauth details from client
-            $new_request = RequestFacade::create('/oauth/token', 'POST', [
-                'grant_type' => 'password',
-                'client_id' => $oauthPasswordClient->id,
-                'client_secret' => $oauthPasswordClient->secret,
-                'username' => $request->username,
-                'password' => $request->password,
-            ]);
-            RequestFacade::replace($new_request->input());
+        // Add parameters to request to abstract oauth details from client
+        $new_request = RequestFacade::create('/oauth/token', 'POST', [
+            'grant_type' => 'password',
+            'client_id' => $oauthPasswordClient->id,
+            'client_secret' => $oauthPasswordClient->secret,
+            'username' => $request->username,
+            'password' => $request->password,
+        ]);
+        RequestFacade::replace($new_request->input());
 
-            /** @noinspection PhpParamsInspection */
-            return Route::dispatch($new_request);
-        }
-        catch(\Exception $e)
-        {
-            return response()->json('Something went wrong with the server.', 500);
-        }
+        /** @noinspection PhpParamsInspection */
+        return Route::dispatch($new_request);
     }
 
     public function logout()
     {
+        // Delete all users tokens, may want to change if user can log in on multiple devices
         foreach (auth()->user()->tokens as $token)
         {
             $token->delete();
