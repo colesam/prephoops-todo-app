@@ -11,6 +11,7 @@ class Login extends React.Component {
       password: '',
       usernameError: null,
       passwordError: null,
+      displayError: null,
       redirect: window.Api.isAuthenticated()
     };
   }
@@ -25,9 +26,13 @@ class Login extends React.Component {
 
   onLoginClick() {
     if (this.validateUsername() && this.validatePassword()) {
-      window.Api.login(this.state.username, this.state.password).then(() => {
-        this.setState({ redirect: true });
-      });
+      window.Api.login(this.state.username, this.state.password)
+        .then(() => {
+          this.setState({ redirect: true });
+        })
+        .catch(displayError => {
+          this.setState({ displayError });
+        });
     }
   }
 
@@ -66,6 +71,16 @@ class Login extends React.Component {
       return <Redirect to="/todo" />;
     }
 
+    let alert;
+    if (this.state.displayError) {
+      alert = (
+        <div className="alert alert-danger">
+          <strong>Error: </strong>
+          {this.state.displayError}
+        </div>
+      );
+    }
+
     return (
       <BaseLayout>
         <div className="col-6">
@@ -75,6 +90,7 @@ class Login extends React.Component {
                 <h1 className="h3">Login</h1>
               </div>
               <div className="card-text">
+                {alert}
                 <TextField
                   label="Username"
                   type="email"

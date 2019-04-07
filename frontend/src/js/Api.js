@@ -30,8 +30,7 @@ class Api {
           resolve();
         })
         .catch(error => {
-          console.log('=== Error ===');
-          console.log(error);
+          reject(error.response.data.error_description);
         });
     });
   }
@@ -56,9 +55,10 @@ class Api {
           Api._removeAccessCookie();
           resolve();
         })
-        .catch(error => {
-          console.log('=== Error ===');
-          console.log(error);
+        .catch(() => {
+          this._accessToken = null;
+          Api._removeAccessCookie();
+          resolve();
         });
     });
   }
