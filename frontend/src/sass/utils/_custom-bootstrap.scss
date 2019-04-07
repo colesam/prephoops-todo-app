@@ -1,7 +1,13 @@
+@import '../utils/variables';
+
 .d-hidden {
   visibility: hidden;
 }
 
 .card.box-shadow {
   border: none;
+}
+
+.btn {
+  box-shadow: $box-shadow;
 }

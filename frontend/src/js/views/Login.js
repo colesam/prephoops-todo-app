@@ -86,12 +86,21 @@ class Login extends React.Component {
                   onChange={event => this.onPasswordChange(event)}
                   onBlur={() => this.validatePassword()}
                 />
-                <button
-                  className="btn btn-primary btn-sm"
-                  onClick={() => this.onLoginClick()}
-                >
-                  Login
-                </button>
+                <div className="row">
+                  <div className="col-12 col-md-6">
+                    <button
+                      className="btn btn-primary form-control"
+                      onClick={() => this.onLoginClick()}
+                    >
+                      Login
+                    </button>
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <button className="btn btn-info form-control">
+                      Register
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
