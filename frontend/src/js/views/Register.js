@@ -36,8 +36,8 @@ class Register extends React.Component {
     ) {
       const { username, password, passwordConfirm } = this.state;
       window.Api.register(username, password, passwordConfirm)
-        .then(response => {
-          console.log(response);
+        .then(() => {
+          window.location = '/';
         })
         .catch(error => {
           let state = {};
