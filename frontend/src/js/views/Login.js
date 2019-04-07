@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 import BaseLayout from './BaseLayout';
 import TextField from '../components/TextField';
 
@@ -10,7 +10,8 @@ class Login extends React.Component {
       username: '',
       password: '',
       usernameError: null,
-      passwordError: null
+      passwordError: null,
+      redirect: false
     };
   }
 
@@ -24,20 +25,9 @@ class Login extends React.Component {
 
   onLoginClick() {
     if (this.validateUsername() && this.validatePassword()) {
-      // submit request
-      axios
-        .post('http://localhost:9000/api/login', {
-          username: this.state.username,
-          password: this.state.password
-        })
-        .then(response => {
-          console.log('=== Response ===');
-          console.log(response);
-        })
-        .catch(error => {
-          console.log('=== Error ===');
-          console.log(error);
-        });
+      window.Api.login(this.state.username, this.state.password).then(() => {
+        this.setState({ redirect: true });
+      });
     }
   }
 
@@ -72,6 +62,10 @@ class Login extends React.Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/todo" />;
+    }
+
     return (
       <BaseLayout>
         <div className="col-6">
