@@ -1,12 +1,10 @@
 import React from 'react';
 
-const BaseLayout = () => {
+const BaseLayout = ({ children }) => {
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-12">
-          <h1>Test</h1>
-        </div>
+      <div className="row justify-content-center align-items-center vh-100">
+        {children}
       </div>
     </div>
   );

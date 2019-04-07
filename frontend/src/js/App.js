@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import BaseLayout from './views/BaseLayout';
+import Login from './views/Login';
 
 const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Route path="/" component={BaseLayout} />
+        <Route path="/" component={Login} />
       </BrowserRouter>
     </div>
   );
