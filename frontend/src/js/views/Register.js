@@ -34,20 +34,21 @@ class Register extends React.Component {
       this.validatePassword() &&
       this.validatePasswordConfirm()
     ) {
-      // submit request
-      axios
-        .post('http://localhost:9000/api/register', {
-          username: this.state.username,
-          password: this.state.password,
-          password_confirmation: this.state.passwordConfirm
-        })
+      const { username, password, passwordConfirm } = this.state;
+      window.Api.register(username, password, passwordConfirm)
         .then(response => {
-          console.log('=== Response ===');
           console.log(response);
         })
         .catch(error => {
-          console.log('=== Error ===');
-          console.log(error);
+          let state = {};
+
+          // Update component state if errors exist
+          if (error.email) state.usernameError = error.email[0];
+          if (error.password) state.passwordError = error.password[0];
+          if (error.password_confirmation)
+            state.passwordConfirm = error.password_confirmation[0];
+
+          this.setState(state);
         });
     }
   }
