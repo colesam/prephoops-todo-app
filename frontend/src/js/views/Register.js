@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import BaseLayout from './BaseLayout';
 import TextField from '../components/TextField';
 
@@ -11,7 +12,8 @@ class Register extends React.Component {
       passwordConfirm: '',
       usernameError: null,
       passwordError: null,
-      passwordConfirmError: null
+      passwordConfirmError: null,
+      redirect: window.Api.isAuthenticated() ? '/todo' : null
     };
   }
 
@@ -36,7 +38,7 @@ class Register extends React.Component {
       const { username, password, passwordConfirm } = this.state;
       window.Api.register(username, password, passwordConfirm)
         .then(() => {
-          window.location = '/';
+          this.setState({ redirect: '/' });
         })
         .catch(error => {
           const state = {};
@@ -50,6 +52,10 @@ class Register extends React.Component {
           this.setState(state);
         });
     }
+  }
+
+  onBackClick() {
+    this.setState({ redirect: '/' });
   }
 
   validateUsername() {
@@ -95,6 +101,10 @@ class Register extends React.Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
+
     return (
       <BaseLayout>
         <div className="col-6">
@@ -141,7 +151,12 @@ class Register extends React.Component {
                     </button>
                   </div>
                   <div className="col-12 col-md-6">
-                    <button className="btn btn-link form-control">Back</button>
+                    <button
+                      className="btn btn-link form-control"
+                      onClick={() => this.onBackClick()}
+                    >
+                      Back
+                    </button>
                   </div>
                 </div>
               </div>

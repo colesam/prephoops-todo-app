@@ -12,7 +12,7 @@ class Login extends React.Component {
       usernameError: null,
       passwordError: null,
       displayError: null,
-      redirect: window.Api.isAuthenticated()
+      redirect: window.Api.isAuthenticated() ? '/todo' : null
     };
   }
 
@@ -28,12 +28,16 @@ class Login extends React.Component {
     if (this.validateUsername() && this.validatePassword()) {
       window.Api.login(this.state.username, this.state.password)
         .then(() => {
-          this.setState({ redirect: true });
+          this.setState({ redirect: '/todo' });
         })
         .catch(displayError => {
           this.setState({ displayError });
         });
     }
+  }
+
+  onRegisterClick() {
+    this.setState({ redirect: '/register' });
   }
 
   validateUsername() {
@@ -67,8 +71,8 @@ class Login extends React.Component {
   }
 
   render() {
-    if (this.state.redirect) {
-      return <Redirect to="/todo" />;
+    if (this.state.redirect !== null) {
+      return <Redirect to={this.state.redirect} />;
     }
 
     let alert;
@@ -119,7 +123,10 @@ class Login extends React.Component {
                     </button>
                   </div>
                   <div className="col-12 col-md-6">
-                    <button className="btn btn-info form-control">
+                    <button
+                      className="btn btn-info form-control"
+                      onClick={() => this.onRegisterClick()}
+                    >
                       Register
                     </button>
                   </div>
