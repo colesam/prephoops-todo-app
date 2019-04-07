@@ -10,9 +10,11 @@ const TextField = ({
   onChange,
   onBlur
 }) => {
-  let subText;
-  let inputClass;
-  let smallClass;
+  let subText = 'placeholder';
+  let inputClass = '';
+  let smallClass = 'd-hidden';
+  let ariaDescribedBy = '';
+
   if (errorMessage) {
     subText = errorMessage;
     inputClass = 'TextField_input--error';
@@ -20,9 +22,6 @@ const TextField = ({
   } else if (helpMessage) {
     subText = helpMessage;
     smallClass = 'text-muted';
-  } else {
-    subText = 'placeholder';
-    smallClass = 'd-hidden';
   }
 
   return (
@@ -33,7 +32,7 @@ const TextField = ({
         value={initialValue}
         className={'form-control form-control-sm ' + inputClass}
         id={id}
-        aria-describedby={errorMessage || helpMessage ? `${id}-help` : ''}
+        aria-describedby={ariaDescribedBy}
         onChange={onChange}
         onBlur={onBlur}
       />
