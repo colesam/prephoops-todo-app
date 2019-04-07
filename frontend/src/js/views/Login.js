@@ -6,7 +6,11 @@ const Login = () => {
     <BaseLayout>
       <div className="col-6">
         <div className="card box-shadow">
-          <div className="card-body">Hello World</div>
+          <div className="card-body">
+            <div className="card-title">
+              <h1 className="h3">Login</h1>
+            </div>
+          </div>
         </div>
       </div>
     </BaseLayout>
