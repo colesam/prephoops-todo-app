@@ -1,33 +1,43 @@
 import React from 'react';
 
-const TextField = ({ id, label, helpMessage, errorMessage }) => {
+const TextField = ({
+  initialValue,
+  isPassword,
+  id,
+  label,
+  helpMessage,
+  errorMessage,
+  onChange,
+  onBlur
+}) => {
   let subText;
-
-  console.log(errorMessage);
+  let smallClasses = ['form-text'];
   if (errorMessage) {
-    subText = (
-      <small id={`${id}-help`} className="form-text text-muted text-danger">
-        {errorMessage}
-      </small>
-    );
+    subText = errorMessage;
+    smallClasses.push('text-danger');
   } else if (helpMessage) {
-    subText = (
-      <small id={`${id}-help`} className="form-text text-muted">
-        {helpMessage}
-      </small>
-    );
+    subText = helpMessage;
+    smallClasses.push('text-muted');
+  } else {
+    subText = 'placeholder';
+    smallClasses.push('d-hidden');
   }
 
   return (
     <div className="form-group">
       <label htmlFor={id}>{label}</label>
       <input
-        type="text"
+        type={isPassword ? 'password' : 'text'}
+        value={initialValue}
         className="form-control form-control-sm"
         id={id}
-        aria-describedby={`${id}-help`}
+        aria-describedby={errorMessage || helpMessage ? `${id}-help` : ''}
+        onChange={onChange}
+        onBlur={onBlur}
       />
-      {subText}
+      <small id={`${id}-help`} className={smallClasses.join(' ')}>
+        {subText}
+      </small>
     </div>
   );
 };
