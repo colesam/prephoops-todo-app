@@ -25,7 +25,35 @@ class Api {
           })
         )
         .then(response => {
-          Api._setAuthCookie(response.data.access_token);
+          this._accessToken = response.data.access_token;
+          Api._setAccessCookie(this._accessToken);
+          resolve();
+        })
+        .catch(error => {
+          console.log('=== Error ===');
+          console.log(error);
+        });
+    });
+  }
+
+  logout() {
+    return new Promise((resolve, reject) => {
+      if (!this.isAuthenticated()) {
+        reject('No access token set.');
+      }
+      axios
+        .post(
+          'http://localhost:9000/api/logout',
+          {},
+          {
+            headers: {
+              Authorization: 'Bearer ' + this._accessToken
+            }
+          }
+        )
+        .then(() => {
+          this._accessToken = null;
+          Api._removeAccessCookie();
           resolve();
         })
         .catch(error => {
@@ -55,11 +83,15 @@ class Api {
     });
   }
 
-  static _setAuthCookie(token) {
+  static _setAccessCookie(token) {
     window.cookie.set('ACCESS_TOKEN', token, {
       path: '/',
       maxAge: 60 * 60 * 2
     });
+  }
+
+  static _removeAccessCookie() {
+    window.cookie.remove('ACCESS_TOKEN');
   }
 
   static _formData(data) {

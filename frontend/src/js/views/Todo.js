@@ -10,12 +10,22 @@ class Todo extends React.Component {
     };
   }
 
+  onLogoutClick() {
+    window.Api.logout().then(() => {
+      this.setState({ redirect: true });
+    });
+  }
+
   render() {
     if (this.state.redirect) {
       return <Redirect to="/" />;
     }
 
-    return <div>Authenticated</div>;
+    return (
+      <button className="btn btn-primary" onClick={() => this.onLogoutClick()}>
+        Logout
+      </button>
+    );
   }
 }
 
