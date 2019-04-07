@@ -9,9 +9,7 @@ class Api {
   isAuthenticated() {
     if (this._accessToken === null) {
       // Try to pull in from cookie
-
-      this._accessToken = window.cookies.get('ACCESS_TOKEN');
-      console.log(this._accessToken);
+      this._accessToken = window.cookie.get('ACCESS_TOKEN');
     }
     return this._accessToken != null;
   }
@@ -28,7 +26,7 @@ class Api {
         )
         .then(response => {
           Api._setAuthCookie(response.data['access_token']);
-          // resolve();
+          resolve();
         })
         .catch(error => {
           console.log('=== Error ===');
