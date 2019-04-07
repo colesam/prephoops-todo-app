@@ -11,7 +11,7 @@ class Login extends React.Component {
       password: '',
       usernameError: null,
       passwordError: null,
-      redirect: false
+      redirect: window.Api.isAuthenticated()
     };
   }
 
@@ -32,7 +32,7 @@ class Login extends React.Component {
   }
 
   validateUsername() {
-    const username = this.state.username;
+    const { username } = this.state;
     const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
     if (username == null || username.length < 1) {
@@ -50,7 +50,7 @@ class Login extends React.Component {
   }
 
   validatePassword() {
-    const password = this.state.password;
+    const { password } = this.state;
 
     if (password == null || password.length < 1) {
       this.setState({ passwordError: 'Please enter a password.' });
@@ -88,7 +88,7 @@ class Login extends React.Component {
                   label="Password"
                   type="password"
                   id="password"
-                  isPassword={true}
+                  isPassword
                   errorMessage={this.state.passwordError}
                   onChange={event => this.onPasswordChange(event)}
                   onBlur={() => this.validatePassword()}

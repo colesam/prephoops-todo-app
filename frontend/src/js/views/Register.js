@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import BaseLayout from './BaseLayout';
 import TextField from '../components/TextField';
 
@@ -40,7 +39,7 @@ class Register extends React.Component {
           window.location = '/';
         })
         .catch(error => {
-          let state = {};
+          const state = {};
 
           // Update component state if errors exist
           if (error.email) state.usernameError = error.email[0];
@@ -54,7 +53,7 @@ class Register extends React.Component {
   }
 
   validateUsername() {
-    const username = this.state.username;
+    const { username } = this.state;
     const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
     if (username == null || username.length < 1) {
@@ -72,7 +71,7 @@ class Register extends React.Component {
   }
 
   validatePassword() {
-    const password = this.state.password;
+    const { password } = this.state;
 
     if (password == null || password.length < 1) {
       this.setState({ passwordError: 'Please enter a password.' });
@@ -84,7 +83,7 @@ class Register extends React.Component {
   }
 
   validatePasswordConfirm() {
-    const passwordConfirm = this.state.passwordConfirm;
+    const { passwordConfirm } = this.state;
 
     if (passwordConfirm !== this.state.password) {
       this.setState({ passwordConfirmError: 'Password does not match.' });
@@ -118,7 +117,7 @@ class Register extends React.Component {
                   label="Password"
                   type="password"
                   id="password"
-                  isPassword={true}
+                  isPassword
                   errorMessage={this.state.passwordError}
                   onChange={event => this.onPasswordChange(event)}
                   onBlur={() => this.validatePassword()}
@@ -127,7 +126,7 @@ class Register extends React.Component {
                   label="Confirm Password"
                   type="password"
                   id="password-confirm"
-                  isPassword={true}
+                  isPassword
                   errorMessage={this.state.passwordConfirmError}
                   onChange={event => this.onPasswordConfirmChange(event)}
                   onBlur={() => this.validatePasswordConfirm()}

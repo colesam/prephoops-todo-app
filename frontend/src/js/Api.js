@@ -25,7 +25,7 @@ class Api {
           })
         )
         .then(response => {
-          Api._setAuthCookie(response.data['access_token']);
+          Api._setAuthCookie(response.data.access_token);
           resolve();
         })
         .catch(error => {
@@ -63,8 +63,8 @@ class Api {
   }
 
   static _formData(data) {
-    let formData = new FormData();
-    for (let key in data) {
+    const formData = new FormData();
+    for (const key in data) {
       if (data.hasOwnProperty(key)) {
         formData.append(key, data[key]);
       }

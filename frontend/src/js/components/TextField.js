@@ -13,7 +13,7 @@ const TextField = ({
   let subText = 'placeholder';
   let inputClass = '';
   let smallClass = 'd-hidden';
-  let ariaDescribedBy = '';
+  const ariaDescribedBy = '';
 
   if (errorMessage) {
     subText = errorMessage;
@@ -28,15 +28,15 @@ const TextField = ({
     <div className="form-group">
       <label htmlFor={id}>{label}</label>
       <input
-        type={type ? type : 'text'}
+        type={type || 'text'}
         value={initialValue}
-        className={'form-control form-control-sm ' + inputClass}
+        className={`form-control form-control-sm ${inputClass}`}
         id={id}
         aria-describedby={ariaDescribedBy}
         onChange={onChange}
         onBlur={onBlur}
       />
-      <small id={`${id}-help`} className={'form-text ' + smallClass}>
+      <small id={`${id}-help`} className={`form-text ${smallClass}`}>
         {subText}
       </small>
     </div>
