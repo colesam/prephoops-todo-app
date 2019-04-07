@@ -17,7 +17,7 @@ class CreateTodoTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
             $table->string('name', 100);
-            $table->boolean('is_checked');
+            $table->boolean('is_checked')->default(false);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
