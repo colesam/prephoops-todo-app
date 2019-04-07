@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
@@ -11,7 +12,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint src/ --fix"
+    "lint": "eslint src/ --fix",
+    "sass:prod": "node-sass src/sass/App.scss public/css/app.css",
+    "sass:dev": "node-sass -w src/sass/App.scss public/css/app.css"
+
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,6 +34,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
+    "node-sass": "^4.11.0",
     "prettier": "^1.16.4"
   }
 }
