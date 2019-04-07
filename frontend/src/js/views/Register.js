@@ -152,7 +152,7 @@ class Register extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <button
-                      className="btn btn-link form-control"
+                      className="btn btn-light form-control"
                       onClick={() => this.onBackClick()}
                     >
                       Back
