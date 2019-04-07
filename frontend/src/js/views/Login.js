@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import BaseLayout from './BaseLayout';
 import TextField from '../components/TextField';
 
@@ -22,9 +23,21 @@ class Login extends React.Component {
   }
 
   onLoginClick() {
-    const usernameValid = this.validateUsername();
-    if (usernameValid) {
+    if (this.validateUsername() && this.validatePassword()) {
       // submit request
+      axios
+        .post('http://localhost:9000/api/login', {
+          username: this.state.username,
+          password: this.state.password
+        })
+        .then(response => {
+          console.log('=== Response ===');
+          console.log(response);
+        })
+        .catch(error => {
+          console.log('=== Error ===');
+          console.log(error);
+        });
     }
   }
 

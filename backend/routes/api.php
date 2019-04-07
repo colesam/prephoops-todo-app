@@ -13,10 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::group(['middleware' => ['cors']], function() {
+    Route::middleware('auth:api')->get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-Route::post('/login', 'Auth\LoginController@login');
-Route::post('/register', 'Auth\RegisterController@register');
-Route::middleware('auth:api')->post('/logout', 'Auth\LoginController@logout');
+    Route::post('/login', 'Auth\LoginController@login');
+    Route::post('/register', 'Auth\RegisterController@register');
+    Route::middleware('auth:api')->post('/logout', 'Auth\LoginController@logout');
+});
