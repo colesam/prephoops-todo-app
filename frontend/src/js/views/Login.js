@@ -30,9 +30,15 @@ class Login extends React.Component {
 
   validateUsername() {
     const username = this.state.username;
+    const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
     if (username == null || username.length < 1) {
       this.setState({ usernameError: 'Please enter a username.' });
+      return false;
+    }
+
+    if (!username.match(emailRegex)) {
+      this.setState({ usernameError: 'Please enter a valid email address.' });
       return false;
     }
 
@@ -64,6 +70,7 @@ class Login extends React.Component {
               <div className="card-text">
                 <TextField
                   label="Username"
+                  type="email"
                   id="username"
                   helpMessage="This should be the email address you signed up with."
                   errorMessage={this.state.usernameError}
@@ -72,6 +79,7 @@ class Login extends React.Component {
                 />
                 <TextField
                   label="Password"
+                  type="password"
                   id="password"
                   isPassword={true}
                   errorMessage={this.state.passwordError}

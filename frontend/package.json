@@ -15,7 +15,6 @@
     "lint": "eslint src/ --fix",
     "sass:prod": "node-sass src/sass/App.scss public/css/app.css",
     "sass:dev": "node-sass -w src/sass/App.scss public/css/app.css"
-
   },
   "eslintConfig": {
     "extends": "react-app"
