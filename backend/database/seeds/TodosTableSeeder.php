@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TodoTableSeeder extends Seeder
+class TodosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -37,7 +37,7 @@ class TodoTableSeeder extends Seeder
 
         foreach ($todos as $todo)
         {
-            DB::table('todo')->insert($todo);
+            DB::table('todos')->insert($todo);
         }
     }
 }
