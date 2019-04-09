@@ -8,6 +8,7 @@ class Todo extends React.Component {
     super(props);
     this.state = {
       todos: [],
+      todoNameFilter: '',
       redirect: !window.Api.isAuthenticated()
     };
   }
@@ -30,6 +31,10 @@ class Todo extends React.Component {
     });
   }
 
+  onTodoNameFilterInput(event) {
+    this.setState({ todoNameFilter: event.target.value });
+  }
+
   onCheck(todoId, isChecked) {
     window.Api.setTodo(todoId, {
       is_checked: isChecked
@@ -45,9 +50,14 @@ class Todo extends React.Component {
       return <Redirect to="/" />;
     }
 
-    let todos = Object.keys(this.state.todos).map(key => {
-      return this.state.todos[key];
-    });
+    let todos = Object.keys(this.state.todos)
+      .map(key => {
+        return this.state.todos[key];
+      })
+      .filter(todo => {
+        const filterText = this.state.todoNameFilter.toLowerCase();
+        return todo.name.toLowerCase().indexOf(filterText) >= 0;
+      });
 
     const todoItems = todos.map((todo, index) => (
       <TodoItem
@@ -85,6 +95,7 @@ class Todo extends React.Component {
                 type="text"
                 className="form-control form-control-sm mb-3"
                 placeholder="Filter"
+                onInput={event => this.onTodoNameFilterInput(event)}
               />
             </div>
             <ul className="list-group list-group-flush">{todoItems}</ul>
