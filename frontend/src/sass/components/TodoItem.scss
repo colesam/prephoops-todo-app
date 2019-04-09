@@ -1,6 +1,6 @@
 @import '../utils/variables';
 
-.TodoItem_checkbox, .TodoItem_checkbox_filling {
+.TodoItem_checkbox, .TodoItem_checkbox_filling, .TodoItem_checkbox_filling-checked {
   border-radius: 50px;
 }
 
@@ -15,16 +15,21 @@
   &:hover {
     cursor: pointer;
 
-    & > .TodoItem_checkbox_filling {
-      opacity: 0.6;
+    & > .TodoItem_checkbox_filling, & > .TodoItem_checkbox_filling-checked {
+      background: lighten($teal, 15%);
+      opacity: 1;
     }
   }
 }
 
-.TodoItem_checkbox_filling {
+.TodoItem_checkbox_filling, .TodoItem_checkbox_filling-checked {
   height: 100%;
   width: 100%;
-  background: $teal;
   opacity: 0;
   transition: $transition-base;
+}
+
+.TodoItem_checkbox_filling-checked {
+  background: lighten($cyan, 15%);
+  opacity: 1;
 }

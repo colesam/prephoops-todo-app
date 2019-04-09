@@ -1,12 +1,16 @@
 import React from 'react';
 
-const TodoItem = name => {
+const TodoItem = (name, isChecked) => {
   return (
     <li className="TodoItem list-group-item">
       <div className="row">
         <div className="col-2 d-flex justify-content-center align-items-center">
           <div className="TodoItem_checkbox">
-            <div className="TodoItem_checkbox_filling" />
+            <div
+              className={
+                'TodoItem_checkbox_filling' + (isChecked ? '-checked' : '')
+              }
+            />
           </div>
         </div>
         <div className="col-6 d-flex align-items-center">name</div>

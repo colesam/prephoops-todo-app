@@ -24,7 +24,7 @@ class Todo extends React.Component {
     }
 
     const todoItems = this.state.todos.map((todo, index) => (
-      <TodoItem name={todo.name} key={index} />
+      <TodoItem name={todo.name} isChecked={true} key={index} />
     ));
 
     return (
