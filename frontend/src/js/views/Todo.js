@@ -77,7 +77,7 @@ class Todo extends React.Component {
 
     return (
       <BaseLayout navbar={true}>
-        <div className="col-6">
+        <div className="col-12 col-sm-10 col-lg-8 col-xl-6">
           <div className="card box-shadow mb-5">
             <div className="card-body d-flex flex-row justify-content-between">
               <h1 className="h3 m-0">Todo App</h1>
