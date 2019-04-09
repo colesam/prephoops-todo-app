@@ -104,6 +104,17 @@ class Api {
     });
   }
 
+  setTodo(id, options) {
+    return new Promise((resolve, reject) => {
+      if (!this.isAuthenticated()) {
+        reject('Not authenticated');
+      }
+
+      console.log(id);
+      console.log(options);
+    });
+  }
+
   static _setAccessCookie(token) {
     window.cookie.set('ACCESS_TOKEN', token, {
       path: '/',

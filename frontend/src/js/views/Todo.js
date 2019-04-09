@@ -28,13 +28,26 @@ class Todo extends React.Component {
     });
   }
 
+  onCheck(todoId, isChecked) {
+    console.log(`checked: ${todoId}`);
+    window.Api.setTodo(todoId, {
+      is_checked: isChecked
+    });
+  }
+
   render() {
     if (this.state.redirect) {
       return <Redirect to="/" />;
     }
 
     const todoItems = this.state.todos.map((todo, index) => (
-      <TodoItem name={todo.name} isChecked={todo.is_checked} key={index} />
+      <TodoItem
+        id={todo.id}
+        name={todo.name}
+        isChecked={todo.is_checked}
+        onCheck={(todoId, isChecked) => this.onCheck(todoId, isChecked)}
+        key={index}
+      />
     ));
 
     return (
