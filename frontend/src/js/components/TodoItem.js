@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TodoItem = (name, isChecked) => {
+const TodoItem = ({ name, isChecked }) => {
   return (
     <li className="TodoItem list-group-item">
       <div className="row">
@@ -13,7 +13,7 @@ const TodoItem = (name, isChecked) => {
             />
           </div>
         </div>
-        <div className="col-6 d-flex align-items-center">name</div>
+        <div className="col-6 d-flex align-items-center">{name}</div>
         <div className="col-1 d-flex justify-content-center align-items-center">
           <i className="fas fa-trash-alt text-danger" />
         </div>
