@@ -24,7 +24,7 @@ class Todo extends React.Component {
 
     return (
       <BaseLayout navbar={true}>
-        <div className="col-6">
+        <div className="col-8">
           <div className="card box-shadow mb-5">
             <div className="card-body d-flex flex-row justify-content-between">
               <h1 className="h3 m-0">Todo App</h1>
@@ -36,9 +36,19 @@ class Todo extends React.Component {
               </button>
             </div>
           </div>
+
           <div className="card box-shadow">
-            <div className="card-body">
-              <div className="card-text" />
+            <div className="card-header">
+              <div className="d-flex justify-content-between align-items-center mt-2 mb-3">
+                <h2 className="h5 mb-0">Todo Items</h2>
+                <span className="h5 mb-0 text-danger">0/4</span>
+              </div>
+              <hr />
+              <input
+                type="text"
+                className="form-control form-control-sm mb-3"
+                placeholder="Filter"
+              />
             </div>
           </div>
         </div>
