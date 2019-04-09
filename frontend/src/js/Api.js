@@ -83,6 +83,27 @@ class Api {
     });
   }
 
+  todos() {
+    return new Promise((resolve, reject) => {
+      if (!this.isAuthenticated()) {
+        reject('Not authenticated');
+      }
+
+      axios
+        .get('http://localhost:9000/api/todos/', {
+          headers: {
+            Authorization: 'Bearer ' + this._accessToken
+          }
+        })
+        .then(response => {
+          resolve(response.data);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  }
+
   static _setAccessCookie(token) {
     window.cookie.set('ACCESS_TOKEN', token, {
       path: '/',
