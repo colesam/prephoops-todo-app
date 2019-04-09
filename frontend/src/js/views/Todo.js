@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import BaseLayout from './BaseLayout';
+import TextField from '../components/TextField';
 import TodoItem from '../components/TodoItem';
 
 class Todo extends React.Component {
@@ -113,6 +114,9 @@ class Todo extends React.Component {
               />
             </div>
             <ul className="list-group list-group-flush">{todoItems}</ul>
+            <div className="card-footer">
+              <TextField placeholder="Create todo" />
+            </div>
           </div>
         </div>
       </BaseLayout>

@@ -5,14 +5,15 @@ const TextField = ({
   type,
   id,
   label,
+  placeholder,
   helpMessage,
   errorMessage,
   onChange,
   onBlur
 }) => {
-  let subText = 'placeholder';
+  let subText;
   let inputClass = '';
-  let smallClass = 'd-hidden';
+  let smallClass = 'd-none';
   const ariaDescribedBy = '';
 
   if (errorMessage) {
@@ -32,6 +33,7 @@ const TextField = ({
         value={initialValue}
         className={`form-control form-control-sm ${inputClass}`}
         id={id}
+        placeholder={placeholder}
         aria-describedby={ariaDescribedBy}
         onChange={onChange}
         onBlur={onBlur}
