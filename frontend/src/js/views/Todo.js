@@ -1,12 +1,13 @@
 import React from 'react';
-import BaseLayout from './BaseLayout';
 import { Redirect } from 'react-router-dom';
+import BaseLayout from './BaseLayout';
+import TodoItem from '../components/TodoItem';
 
 class Todo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: [],
+      todos: [{ name: 'test' }],
       redirect: !window.Api.isAuthenticated()
     };
   }
@@ -21,6 +22,10 @@ class Todo extends React.Component {
     if (this.state.redirect) {
       return <Redirect to="/" />;
     }
+
+    const todoItems = this.state.todos.map((todo, index) => (
+      <TodoItem name={todo.name} key={index} />
+    ));
 
     return (
       <BaseLayout navbar={true}>
@@ -51,6 +56,7 @@ class Todo extends React.Component {
               />
             </div>
             <ul className="list-group list-group-flush">
+              {todoItems}
               <li className="list-group-item">
                 <div className="row">
                   <div className="col-2 d-flex align-items-center">

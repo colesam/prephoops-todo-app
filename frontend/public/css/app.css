@@ -7032,6 +7032,28 @@ a.text-dark:hover, a.text-dark:focus {
 .TextField_input--error {
   border-color: #dc3545 !important; }
 
+.TodoItem_checkbox, .TodoItem_checkbox_filling {
+  border-radius: 50px; }
+
+.TodoItem_checkbox {
+  border: 2px solid #dee2e6;
+  width: 25px;
+  height: 25px;
+  min-width: 25px;
+  min-height: 25px;
+  padding: 3px; }
+  .TodoItem_checkbox:hover {
+    cursor: pointer; }
+    .TodoItem_checkbox:hover > .TodoItem_checkbox_filling {
+      opacity: 0.6; }
+
+.TodoItem_checkbox_filling {
+  height: 100%;
+  width: 100%;
+  background: #20c997;
+  opacity: 0;
+  transition: all 0.2s ease-in-out; }
+
 body {
   background-color: #f5f5f5;
   background-image: radial-gradient(circle, #ebebeb 1px, #f5f5f5 0px);

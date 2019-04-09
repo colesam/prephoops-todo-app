@@ -1,0 +1,21 @@
+import React from 'react';
+
+const TodoItem = name => {
+  return (
+    <li className="TodoItem list-group-item">
+      <div className="row">
+        <div className="col-2 d-flex justify-content-center align-items-center">
+          <div className="TodoItem_checkbox">
+            <div className="TodoItem_checkbox_filling" />
+          </div>
+        </div>
+        <div className="col-6 d-flex align-items-center">name</div>
+        <div className="col-1 d-flex justify-content-center align-items-center">
+          <i className="fas fa-trash-alt text-danger" />
+        </div>
+      </div>
+    </li>
+  );
+};
+
+export default TodoItem;

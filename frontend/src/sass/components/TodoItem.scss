@@ -1,0 +1,30 @@
+@import '../utils/variables';
+
+.TodoItem_checkbox, .TodoItem_checkbox_filling {
+  border-radius: 50px;
+}
+
+.TodoItem_checkbox {
+  border: 2px solid $gray-300;
+  width: 25px;
+  height: 25px;
+  min-width: 25px;
+  min-height: 25px;
+  padding: 3px;
+
+  &:hover {
+    cursor: pointer;
+
+    & > .TodoItem_checkbox_filling {
+      opacity: 0.6;
+    }
+  }
+}
+
+.TodoItem_checkbox_filling {
+  height: 100%;
+  width: 100%;
+  background: $teal;
+  opacity: 0;
+  transition: $transition-base;
+}
