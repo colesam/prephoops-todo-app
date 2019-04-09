@@ -75,4 +75,18 @@ class TodoController extends Controller
             'isChecked' => filter_var($todo->is_checked, FILTER_VALIDATE_BOOLEAN)
         ], 200);
     }
+
+    public function create(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:100']
+        ]);
+
+        $todo = new Todo;
+        $todo->name = $request->name;
+        $todo->user_id = Auth::user()->id;
+        $todo->save();
+
+        return response()->json($todo, 200);
+    }
 }
