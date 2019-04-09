@@ -50,6 +50,78 @@ class Todo extends React.Component {
                 placeholder="Filter"
               />
             </div>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">
+                <div className="row">
+                  <div className="col-2 d-flex align-items-center">
+                    <div className="checkbox" />
+                  </div>
+                  <div className="col-6 d-flex align-items-center">
+                    Walk dog
+                  </div>
+                  <div className="col-3 d-flex align-items-center">
+                    <button className="btn btn-sm btn-warning w-100">
+                      in progress
+                    </button>
+                  </div>
+                  <div className="col-1 d-flex justify-content-center align-items-center">
+                    <i className="fas fa-trash-alt text-danger" />
+                  </div>
+                </div>
+              </li>
+              <li className="list-group-item">
+                <div className="row">
+                  <div className="col-2 d-flex align-items-center">
+                    <div className="checkbox" />
+                  </div>
+                  <div className="col-6 d-flex align-items-center">
+                    Feed cat
+                  </div>
+                  <div className="col-3 d-flex align-items-center">
+                    <button className="btn btn-sm btn-danger w-100">
+                      priority
+                    </button>
+                  </div>
+                  <div className="col-1 d-flex justify-content-center align-items-center">
+                    <i className="fas fa-trash-alt text-danger" />
+                  </div>
+                </div>
+              </li>
+              <li className="list-group-item">
+                <div className="row">
+                  <div className="col-2 d-flex align-items-center">
+                    <div className="checkbox" />
+                  </div>
+                  <div className="col-6 d-flex align-items-center">
+                    Move iguana
+                  </div>
+                  <div className="col-3 d-flex align-items-center">
+                    <button className="btn btn-sm btn-secondary w-100">
+                      on hold
+                    </button>
+                  </div>
+                  <div className="col-1 d-flex justify-content-center align-items-center">
+                    <i className="fas fa-trash-alt text-danger" />
+                  </div>
+                </div>
+              </li>
+              <li className="list-group-item">
+                <div className="row">
+                  <div className="col-2 d-flex align-items-center">
+                    <div className="checkbox" />
+                  </div>
+                  <div className="col-6 d-flex align-items-center text-muted strike-through">
+                    Move second iguana
+                  </div>
+                  <div className="col-3 d-flex align-items-center">
+                    <button className="btn btn-sm btn-light w-100">none</button>
+                  </div>
+                  <div className="col-1 d-flex justify-content-center align-items-center">
+                    <i className="fas fa-trash-alt text-danger" />
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </BaseLayout>
