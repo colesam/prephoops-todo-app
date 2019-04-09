@@ -50,9 +50,14 @@ class Todo extends React.Component {
       return <Redirect to="/" />;
     }
 
+    let todosCompleted = 0;
     let todos = Object.keys(this.state.todos)
       .map(key => {
-        return this.state.todos[key];
+        const todo = this.state.todos[key];
+        if (todo.isChecked) {
+          todosCompleted++;
+        }
+        return todo;
       })
       .filter(todo => {
         const filterText = this.state.todoNameFilter.toLowerCase();
@@ -88,7 +93,16 @@ class Todo extends React.Component {
             <div className="card-header">
               <div className="d-flex justify-content-between align-items-center mt-2 mb-3">
                 <h2 className="h5 mb-0">Todo Items</h2>
-                <span className="h5 mb-0 text-danger">0/4</span>
+                <span
+                  className={
+                    'h5 mb-0 ' +
+                    (todosCompleted === todos.length
+                      ? 'text-success'
+                      : 'text-danger')
+                  }
+                >
+                  {todosCompleted}/{todos.length}
+                </span>
               </div>
               <hr />
               <input
