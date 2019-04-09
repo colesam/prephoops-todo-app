@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Todo;
 use Auth;
 
 class TodoController extends Controller
@@ -33,6 +34,31 @@ class TodoController extends Controller
             'name' => $todo->name,
             'is_checked' => $todo->is_checked,
             'tags' => $tags
+        ], 200);
+    }
+
+    public function update(Request $request, $todo_id)
+    {
+        $allowedFields = ['is_checked'];
+        $request->validate([
+            'is_checked' => ['boolean']
+        ]);
+        $todo = Todo::where('id', $todo_id)->first();
+
+        foreach ($request->all() as $key => $value)
+        {
+            if (in_array($key, $allowedFields))
+            {
+                $todo->$key = $value;
+            }
+        }
+
+        $todo->save();
+
+        return response()->json([
+            'id' => $todo->id,
+            'name' => $todo->name,
+            'is_checked' => filter_var($todo->is_checked, FILTER_VALIDATE_BOOLEAN)
         ], 200);
     }
 }

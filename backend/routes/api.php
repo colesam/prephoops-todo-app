@@ -20,6 +20,7 @@ Route::group(['middleware' => ['cors']], function() {
     Route::group(['middleware' => ['auth:api']], function() {
         Route::get('/todos', 'TodoController@index');
         Route::get('/todos/{todo_id}', 'TodoController@find');
+        Route::post('/todos/{todo_id}', 'TodoController@update');
         Route::post('/logout', 'Auth\LoginController@logout');
     });
 });
