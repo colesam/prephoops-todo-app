@@ -16,9 +16,9 @@ const TodoItem = ({ id, name, isChecked, onCheck }) => {
             />
           </div>
         </div>
-        <div className="col-6 d-flex align-items-center">{name}</div>
+        <div className="col-9 d-flex align-items-center">{name}</div>
         <div className="col-1 d-flex justify-content-center align-items-center">
-          <i className="fas fa-trash-alt text-danger" />
+          <i className="TodoItem_delete fas fa-trash-alt text-danger" />
         </div>
       </div>
     </li>

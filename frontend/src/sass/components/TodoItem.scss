@@ -33,3 +33,20 @@
   background: lighten($cyan, 15%);
   opacity: 1;
 }
+
+.TodoItem_delete {
+  opacity: 0;
+  transition: $transition-base;
+}
+
+.TodoItem:hover .TodoItem_delete {
+  opacity: 0.6;
+
+  &:hover {
+    opacity: 1;
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+}
