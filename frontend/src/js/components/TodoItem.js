@@ -7,7 +7,7 @@ const TodoItem = ({ id, name, isChecked, onCheck }) => {
         <div className="col-2 d-flex justify-content-center align-items-center">
           <div
             className="TodoItem_checkbox"
-            onClick={() => onCheck(id, isChecked)}
+            onClick={() => onCheck(id, !isChecked)}
           >
             <div
               className={

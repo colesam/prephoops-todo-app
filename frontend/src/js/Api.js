@@ -40,6 +40,7 @@ class Api {
       if (!this.isAuthenticated()) {
         reject('No access token set.');
       }
+
       axios
         .post(
           'http://localhost:9000/api/logout',
@@ -110,8 +111,18 @@ class Api {
         reject('Not authenticated');
       }
 
-      console.log(id);
-      console.log(options);
+      axios
+        .post(`http://localhost:9000/api/todos/${id}`, options, {
+          headers: {
+            Authorization: 'Bearer ' + this._accessToken
+          }
+        })
+        .then(() => {
+          resolve();
+        })
+        .catch(error => {
+          reject(error);
+        });
     });
   }
 

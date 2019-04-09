@@ -10,7 +10,21 @@ class TodoController extends Controller
 {
     public function index()
     {
-        return response()->json(Auth::user()->todos, 200);
+        return response()->json(Auth::user()->todos->map(function($todo) {
+            $tags = $todo->tags->map(function($tag) {
+                return [
+                    'id' => $tag->id,
+                    'name' => $tag->name
+                ];
+            });
+
+            return [
+                'id' => $todo->id,
+                'name' => $todo->name,
+                'isChecked' => $todo->is_checked,
+                'tags' => $tags
+            ];
+        }), 200);
     }
 
     public function find($todo_id)
@@ -32,7 +46,7 @@ class TodoController extends Controller
         return response()->json([
             'id' => $todo->id,
             'name' => $todo->name,
-            'is_checked' => $todo->is_checked,
+            'isChecked' => $todo->is_checked,
             'tags' => $tags
         ], 200);
     }
@@ -58,7 +72,7 @@ class TodoController extends Controller
         return response()->json([
             'id' => $todo->id,
             'name' => $todo->name,
-            'is_checked' => filter_var($todo->is_checked, FILTER_VALIDATE_BOOLEAN)
+            'isChecked' => filter_var($todo->is_checked, FILTER_VALIDATE_BOOLEAN)
         ], 200);
     }
 }

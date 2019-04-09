@@ -14,7 +14,9 @@ class Todo extends React.Component {
 
   componentDidMount() {
     window.Api.todos()
-      .then(todos => {
+      .then(todosArr => {
+        const todos = {};
+        todosArr.forEach(todo => (todos[todo.id] = todo));
         this.setState({ todos });
       })
       .catch(error => {
@@ -29,9 +31,12 @@ class Todo extends React.Component {
   }
 
   onCheck(todoId, isChecked) {
-    console.log(`checked: ${todoId}`);
     window.Api.setTodo(todoId, {
       is_checked: isChecked
+    }).then(() => {
+      const todos = this.state.todos;
+      todos[todoId].isChecked = isChecked;
+      this.setState({ todos });
     });
   }
 
@@ -40,11 +45,15 @@ class Todo extends React.Component {
       return <Redirect to="/" />;
     }
 
-    const todoItems = this.state.todos.map((todo, index) => (
+    let todos = Object.keys(this.state.todos).map(key => {
+      return this.state.todos[key];
+    });
+
+    const todoItems = todos.map((todo, index) => (
       <TodoItem
         id={todo.id}
         name={todo.name}
-        isChecked={todo.is_checked}
+        isChecked={todo.isChecked}
         onCheck={(todoId, isChecked) => this.onCheck(todoId, isChecked)}
         key={index}
       />
