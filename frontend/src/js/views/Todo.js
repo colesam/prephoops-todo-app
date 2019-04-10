@@ -15,8 +15,14 @@ class Todo extends React.Component {
   }
 
   handleSubmit(todoName) {
-    console.log('SUCCESS');
-    console.log(todoName);
+    window.Api.createTodo(todoName)
+      .then(response => {
+        console.log(response);
+        const todos = this.state.todos;
+        todos[response.id] = response;
+        this.setState({});
+      })
+      .catch(error => console.log(error));
   }
 
   componentDidMount() {
@@ -66,6 +72,7 @@ class Todo extends React.Component {
         return todo;
       })
       .filter(todo => {
+        console.log(todo);
         const filterText = this.state.todoNameFilter.toLowerCase();
         return todo.name.toLowerCase().indexOf(filterText) >= 0;
       });

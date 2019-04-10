@@ -105,6 +105,31 @@ class Api {
     });
   }
 
+  createTodo(name) {
+    return new Promise((resolve, reject) => {
+      if (!this.isAuthenticated()) {
+        reject('Not authenticated');
+      }
+
+      axios
+        .post(
+          `http://localhost:9000/api/todos`,
+          { name },
+          {
+            headers: {
+              Authorization: 'Bearer ' + this._accessToken
+            }
+          }
+        )
+        .then(response => {
+          resolve(response.data);
+        })
+        .catch(error => {
+          reject(error.response.data.errors);
+        });
+    });
+  }
+
   setTodo(id, options) {
     return new Promise((resolve, reject) => {
       if (!this.isAuthenticated()) {
@@ -121,7 +146,7 @@ class Api {
           resolve();
         })
         .catch(error => {
-          reject(error);
+          reject(error.response.data.errors);
         });
     });
   }
