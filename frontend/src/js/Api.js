@@ -16,9 +16,10 @@ class Api {
 
   login(username, password) {
     return new Promise((resolve, reject) => {
+      console.log(window.env.API_URL);
       axios
         .post(
-          'http://localhost:9000/api/login',
+          `${this._host}/login`,
           Api._formData({
             username,
             password
@@ -43,7 +44,7 @@ class Api {
 
       axios
         .post(
-          'http://localhost:9000/api/logout',
+          `${this._host}/logout`,
           {},
           {
             headers: {
@@ -68,7 +69,7 @@ class Api {
     return new Promise((resolve, reject) => {
       axios
         .post(
-          'http://localhost:9000/api/register',
+          `${this._host}/register`,
           Api._formData({
             email,
             password,
@@ -91,7 +92,7 @@ class Api {
       }
 
       axios
-        .get('http://localhost:9000/api/todos/', {
+        .get(`${this._host}/todos`, {
           headers: {
             Authorization: 'Bearer ' + this._accessToken
           }
@@ -113,7 +114,7 @@ class Api {
 
       axios
         .post(
-          `http://localhost:9000/api/todos`,
+          `${this._host}/todos`,
           { name },
           {
             headers: {
@@ -137,7 +138,7 @@ class Api {
       }
 
       axios
-        .post(`http://localhost:9000/api/todos/${id}`, options, {
+        .post(`${this._host}/todos/${id}`, options, {
           headers: {
             Authorization: 'Bearer ' + this._accessToken
           }
@@ -158,7 +159,7 @@ class Api {
       }
 
       axios
-        .delete(`http://localhost:9000/api/todos/${id}`, {
+        .delete(`${this._host}/todos/${id}`, {
           headers: {
             Authorization: 'Bearer ' + this._accessToken
           }
