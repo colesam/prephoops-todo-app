@@ -1,28 +1,24 @@
-## To-Do Application Challenge
+# To-Do Application Challenge
 
-**Design**: It is up to you, but it needs to work on both desktop and mobile.
+There are a lot of improvements I would have made next if this were an actual project.
 
-**Frontend**: Any Javascript framework, but we prefer React (https://github.com/JeanHules/react-boiler-plate).
+## Setup
 
-**Backend**: Any PHP framework, but we prefer Laravel (https://github.com/JeanHules/laravel-boiler-plate)
+I included scripts that will setup the database I used, as well as other service like nginx, in a docker containers. This is the easiest way to preview my project. Install docker, docker-compose, and then run the following commands:
 
-In this role, you will often be the designer, frontend and backend developer. Build your application to meet the requirements below, but feel free to add functionality if you think there should be more. You are the creator of this product and we want to see not only how you design and code, but how you think and solve problems.
+```
+git clone git@github.com:colesam/prephoops-todo-app.git
+cd prephoops-todo-app/backend
+cp .env.example .env
+composer install
+php artisan key:generate
+cd ..
+./setup.sh
+# Enter password here when prompted
+./migrate.sh
+cd frontend
+npm ci
+npm start
+```
 
-You can make your application as simple or complex as you want. Do not overthink it, but know that we want something built with lightweight code that is powerful for the user, and scalable for the company.
-
--   Create an account
--   Create a To-Do item
--   Edit a To-Do item
--   Delete a To-Do item
--   Complete a To-Do item
--   Uncomplete a To-Do item
--   Tag or Categorize an item
--   Search
--   Logout
-
-## Instructions
-
--   Fork the code from [This Repo](https://github.com/JeanHules/prephoops-todo-app) which has both the Laravel and React repos setup as submodules.
--   Create your application using a JS framework as your frontend
--   Create an API using a PHP framework as your backend
--   Once finished, create a pull request. Once you have done that, we will review your code.
+These commands will clone my repository and setup the backend services in docker containers with the frontend running on localhost:3000. By default, the laravel backend is listening on localhost:9000. If this is changed you will need to modify the `frontend/env.js` file. The database is a postgresql 11 server listening on localhost:5432. The database is using user `postgres` with password `test123`. These values can be changed in `backend/.env` and in the `docker-compose.yml` file.
