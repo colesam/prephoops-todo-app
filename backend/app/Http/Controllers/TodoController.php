@@ -87,6 +87,10 @@ class TodoController extends Controller
         $todo->user_id = Auth::user()->id;
         $todo->save();
 
-        return response()->json($todo, 200);
+        return response()->json([
+            'id' => $todo->id,
+            'name' => $todo->name,
+            'isChecked' => false
+        ], 200);
     }
 }
