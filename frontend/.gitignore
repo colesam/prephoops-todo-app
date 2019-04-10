@@ -24,4 +24,4 @@ yarn-error.log*
 
 public/css/ # built by node-sass
 
-src/.env
+src/env.js
