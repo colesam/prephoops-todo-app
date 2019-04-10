@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import BaseLayout from './BaseLayout';
-import TextField from '../components/TextField';
+import CreateTodoForm from '../components/CreateTodoForm';
 import TodoItem from '../components/TodoItem';
 
 class Todo extends React.Component {
@@ -12,6 +12,11 @@ class Todo extends React.Component {
       todoNameFilter: '',
       redirect: !window.Api.isAuthenticated()
     };
+  }
+
+  handleSubmit(todoName) {
+    console.log('SUCCESS');
+    console.log(todoName);
   }
 
   componentDidMount() {
@@ -115,7 +120,9 @@ class Todo extends React.Component {
             </div>
             <ul className="list-group list-group-flush">{todoItems}</ul>
             <div className="card-footer">
-              <TextField placeholder="Create todo" />
+              <CreateTodoForm
+                onSubmit={todoName => this.handleSubmit(todoName)}
+              />
             </div>
           </div>
         </div>
