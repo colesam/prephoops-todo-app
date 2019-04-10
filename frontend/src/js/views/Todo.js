@@ -57,6 +57,16 @@ class Todo extends React.Component {
     });
   }
 
+  handleDelete(todoId) {
+    window.Api.deleteTodo(todoId)
+      .then(() => {
+        const todos = this.state.todos;
+        delete todos[todoId];
+        this.setState({ todos });
+      })
+      .catch(error => console.log(error));
+  }
+
   render() {
     if (this.state.redirect) {
       return <Redirect to="/" />;
@@ -83,6 +93,7 @@ class Todo extends React.Component {
         name={todo.name}
         isChecked={todo.isChecked}
         onCheck={(todoId, isChecked) => this.onCheck(todoId, isChecked)}
+        onDelete={() => this.handleDelete(todo.id)}
         key={index}
       />
     ));

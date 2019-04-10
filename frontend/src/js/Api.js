@@ -151,6 +151,27 @@ class Api {
     });
   }
 
+  deleteTodo(id) {
+    return new Promise((resolve, reject) => {
+      if (!this.isAuthenticated()) {
+        reject('Not authenticated');
+      }
+
+      axios
+        .delete(`http://localhost:9000/api/todos/${id}`, {
+          headers: {
+            Authorization: 'Bearer ' + this._accessToken
+          }
+        })
+        .then(() => {
+          resolve();
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  }
+
   static _setAccessCookie(token) {
     window.cookie.set('ACCESS_TOKEN', token, {
       path: '/',

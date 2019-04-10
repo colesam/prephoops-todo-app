@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TodoItem = ({ id, name, isChecked, onCheck }) => {
+const TodoItem = ({ id, name, isChecked, onCheck, onDelete }) => {
   return (
     <li className="TodoItem list-group-item">
       <div className="row">
@@ -18,7 +18,10 @@ const TodoItem = ({ id, name, isChecked, onCheck }) => {
         </div>
         <div className="col-9 d-flex align-items-center">{name}</div>
         <div className="col-1 px-0 d-flex justify-content-center align-items-center">
-          <i className="TodoItem_delete fas fa-trash-alt text-danger" />
+          <i
+            className="TodoItem_delete fas fa-trash-alt text-danger"
+            onClick={onDelete}
+          />
         </div>
       </div>
     </li>
