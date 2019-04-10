@@ -93,4 +93,11 @@ class TodoController extends Controller
             'isChecked' => false
         ], 200);
     }
+
+    public function delete($todo_id)
+    {
+        $todo = Todo::where('id', $todo_id)->delete();
+
+        return response()->json('Deleted successfully.', 200);
+    }
 }

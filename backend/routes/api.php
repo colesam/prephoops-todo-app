@@ -22,6 +22,7 @@ Route::group(['middleware' => ['cors']], function() {
         Route::get('/todos/{todo_id}', 'TodoController@find');
         Route::post('/todos', 'TodoController@create');
         Route::post('/todos/{todo_id}', 'TodoController@update');
+        Route::delete('/todos/{todo_id}', 'TodoController@delete');
         Route::post('/logout', 'Auth\LoginController@logout');
     });
 });
