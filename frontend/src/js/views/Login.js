@@ -87,7 +87,7 @@ class Login extends React.Component {
 
     return (
       <BaseLayout>
-        <div className="col-6">
+        <div className="col-12 col-md-10 col-sm-8 col-lg-6">
           <div className="card box-shadow">
             <div className="card-body">
               <div className="card-title mb-4">
@@ -114,7 +114,7 @@ class Login extends React.Component {
                   onBlur={() => this.validatePassword()}
                 />
                 <div className="row">
-                  <div className="col-12 col-md-6">
+                  <div className="col-12 col-sm-6 mb-2 mb-sm-0">
                     <button
                       className="btn btn-primary form-control"
                       onClick={() => this.onLoginClick()}
@@ -122,7 +122,7 @@ class Login extends React.Component {
                       Login
                     </button>
                   </div>
-                  <div className="col-12 col-md-6">
+                  <div className="col-12 col-sm-6">
                     <button
                       className="btn btn-info form-control"
                       onClick={() => this.onRegisterClick()}

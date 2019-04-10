@@ -107,7 +107,7 @@ class Register extends React.Component {
 
     return (
       <BaseLayout>
-        <div className="col-6">
+        <div className="col-12 col-md-10 col-sm-8 col-lg-6">
           <div className="card box-shadow">
             <div className="card-body">
               <div className="card-title mb-4">
@@ -142,7 +142,7 @@ class Register extends React.Component {
                   onBlur={() => this.validatePasswordConfirm()}
                 />
                 <div className="row">
-                  <div className="col-12 col-md-6">
+                  <div className="col-12 col-sm-6 mb-2 mb-sm-0">
                     <button
                       className="btn btn-primary form-control"
                       onClick={() => this.onRegisterClick()}
@@ -150,7 +150,7 @@ class Register extends React.Component {
                       Register
                     </button>
                   </div>
-                  <div className="col-12 col-md-6">
+                  <div className="col-12 col-sm-6">
                     <button
                       className="btn btn-light form-control"
                       onClick={() => this.onBackClick()}
