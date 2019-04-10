@@ -17,6 +17,7 @@ cd ..
 # Enter password here when prompted
 ./migrate.sh
 cd frontend
+cp src/env.example.js src/env.js
 npm ci
 npm start
 ```
